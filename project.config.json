@@ -1,0 +1,19 @@
+{
+  "packageName": "@xyb-community/prostate-workbench",
+  "title": "小前宝 ProstaPal · 前列腺癌工作台",
+  "repository": "https://github.com/xyb-openharness-dsh-plugins/prostate-workbench",
+  "description": "面向前列腺癌患者与照护者的本机优先工作台：病理与 PSA 读懂、ADT 身体与生活、排尿与性功能康复、主动监测、复诊准备与临床试验档案",
+  "slug": "prostate-workbench",
+  "layoutMode": "business-first",
+  "businessWidth": 0.72,
+  "targetUsers": "新确诊或正在治疗的前列腺癌患者本人（60-75 岁男性为主），以及代记资料的配偶/子女照护者",
+  "scenario": "患者拿到一份穿刺病理和一张 PSA 化验单，看不懂 Gleason/ISUP 与分期；正在做去势治疗，潮热乏力性功能变化没人可问；下次门诊想带一份说得清的材料",
+  "coreFlow": [
+    "把病理、PSA、影像原文抄录/导入，标注哪些还没核对",
+    "在分型与风险页看到自己的 Gleason/ISUP、分期、风险组原文，知道哪些要问医生",
+    "在治疗历程记录当前路径（主动监测/根治术/放疗/ADT/新型内分泌）与实际用药、周期",
+    "在身体与生活页记潮热、体力、骨健康、排尿、性功能与情绪，选择哪些可分享",
+    "生成一份复诊摘要，带去门诊；把想问的问题与试验线索一起收好"
+  ],
+  "completion": "患者能用自己的话说清得的是哪一类、现在走到哪一步、这次复查要问什么；照护者能接手记录而不丢信息"
+}

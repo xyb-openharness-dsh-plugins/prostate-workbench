@@ -1,0 +1,3 @@
+- insert:
+    - id: prostate-workbench-main
+      name: "@xyb-community/prostate-workbench"
