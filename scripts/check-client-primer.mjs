@@ -67,6 +67,14 @@ check('C10b', 'URL 均为 https 且非域名首页', clientUrls.length > 0 && cl
   try { const parsed = new URL(u); return parsed.protocol === 'https:' && (parsed.pathname !== '/' || parsed.search) } catch { return false }
 }), clientUrls.length + ' 条')
 
+/* 11 号 · AI 面板分隔线：1px 细线夹在业务区与会话之间，热区 11px，拖动有遮罩 */
+const separatorAt = client.indexOf("role: 'separator'")
+const asideAt = client.indexOf("h('aside'")
+check('C11', '分隔线在 aside 之前', separatorAt > 0 && asideAt > 0 && separatorAt < asideAt,
+  `separator=${separatorAt} aside=${asideAt}`)
+check('C12', '分隔线 1px 不占位、按百分比定位', /width: 1, marginRight: -0\.5/.test(client) && /right: `\$\{percent\}%`/.test(client))
+check('C13', '热区 11px + 指针捕获 + 拖动遮罩', /left: -5, width: 11/.test(client) && /setPointerCapture/.test(client) && /dragShieldStyle/.test(client))
+
 for (const line of oks) console.log('PASS  ' + line)
 for (const line of fails) console.log('FAIL  ' + line)
 console.log(`\n${fails.length ? '✗' : '✓'} 客户端结构断言：${oks.length + fails.length} 项，${oks.length} 通过，${fails.length} 失败`)
