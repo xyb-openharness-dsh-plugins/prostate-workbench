@@ -2,7 +2,7 @@
 
 面向前列腺癌患者与照护者的本机优先工作台：病理与 PSA 读懂、ADT 身体与生活、排尿与性功能康复、主动监测、复诊准备与临床试验档案
 
-这是接入骨架，尚未实现真实业务。初始化后先将 [项目设计提示词](docs/DESIGN-PROMPT.md) 交给当前Agent；它应展示实际路径并以已有用户/场景/流程素材对齐设计者、研究与取舍原则。癌种项目另有 [完整专用提示词](prompts/NEW-CANCER-WORKBENCH.md)。需求见 [BRIEF](docs/BRIEF.md)，规格见 [SPEC](docs/SPEC.md)，任务见 [TASKS](docs/TASKS.md)；先读 [AGENTS](AGENTS.md)。CLI输出交接与首问，实际对话由Agent接续。
+这是接入骨架 + 随包模拟演示页。`public/` 已按本文与 BRIEF 的六条业务线建出可打开的界面（全部为虚构演示数据，不读写真实文件）；真实业务数据与 API 尚未实现。初始化后先将 [项目设计提示词](docs/DESIGN-PROMPT.md) 交给当前Agent；它应展示实际路径并以已有用户/场景/流程素材对齐设计者、研究与取舍原则。癌种项目另有 [完整专用提示词](prompts/NEW-CANCER-WORKBENCH.md)。需求见 [BRIEF](docs/BRIEF.md)，规格见 [SPEC](docs/SPEC.md)，任务见 [TASKS](docs/TASKS.md)；先读 [AGENTS](AGENTS.md)。CLI输出交接与首问，实际对话由Agent接续。
 
 ## 疾病概要
 
@@ -67,7 +67,8 @@
 
 - 一个 DSH 工作台注册、认证的健康接口、版本展示与标准/大字切换。
 - 已明确选择布局：business-first。business-first 使用 customFrame；模板不创建会话或复制聊天。需要 AI 协助时按官方合同接入原生 conversation 和会话管理。
-- 无业务数据库、无演示患者、无真实密钥；所有业务页按确认 spec 逐项实现。
+- 随包模拟演示页：`public/` 含今日看板（D+N 状态卡）、PSA 趋势、ADT 用药与副作用、排尿与性功能康复、主动监测、复诊准备、临床试验七页；全部数据为虚构演示，页内明确标注「模拟演示」，不读写真实文件。外壳 `lib/client.js` 用 `UI_ENTRY` 以 iframe 装载，自绘骨架只作加载失败兜底。
+- 无业务数据库、无真实患者、无真实密钥；所有业务页仍按确认 spec 逐项实现。
 
 ## 开发与本地验收
 
