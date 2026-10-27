@@ -7,8 +7,7 @@
 ## 疾病概要
 
 > 四段固定、整体属解释层（第 ② 层）：只整理公开信息，不判断你的病情。
-> 看板「?」入口待原型期补（本项目尚无 prototypes/ 目录）。
-> 原件状态照实写：NCCN / AJCC / ISUP / 国内指南都只知「存在」，**原件未取得、版本未核实**，页码一律待核。
+> 看板顶栏「疾病概要」入口已加入客户端（`lib/client.js`）；可探针预览页见 `examples/disease-primer/`。NCCN 提供患者版（早期 / 晚期）详情页与临床版官方入口、AJCC 提供官方分期体系入口；四份文件的**原件仍未取得、版本未核实**，页码一律待核。
 
 ### 定义
 
@@ -22,16 +21,18 @@
 
 `docs/BRIEF.md` 记录的目标用户是新确诊或治疗中的患者（60–75 岁男性为主）与代记资料的配偶 / 子女；本台不把医生任务写成患者任务。
 
-**来源**：ISUP · 前列腺癌 Gleason 分级分组共识 · 版本未核实 · 未取得原件，据二次来源 · 页码待核 ｜ AJCC · Cancer Staging Manual（前列腺章节）· 版本未核实 · 未取得原件，据二次来源 · 页码待核 ｜ 本项目 `docs/BRIEF.md` · 一手项目文件
+**来源**：ISUP · 前列腺癌 Gleason 分级分组共识 · 版本未核实 · 未取得原件（Am J Surg Pathol 订阅全文；DOI 对脚本返回 403）· 页码待核 ｜ AJCC · Cancer Staging Manual（前列腺章节）· 版本未核实 · 未取得原件，据二次来源 · 页码待核 ｜ 本项目 `docs/BRIEF.md` · 一手项目文件
 
 ### 医学资料规范和指南情况
 
 | 机构 | 文件 | 版本 / 年份 | 原件 | 本台的用途 |
 |---|---|---|---|---|
-| NCCN | NCCN Guidelines · Prostate Cancer | 版本未核实（项目 docs 未记录） | 未取得原件 | 风险分组与治疗路径的框架参考；不引具体条目 |
-| AJCC | Cancer Staging Manual（前列腺章节） | 版本未核实 | 未取得原件 | TNM 分期口径 |
-| ISUP | 前列腺癌 Gleason 分级分组共识 | 版本未核实 | 未取得原件 | Gleason 评分与 ISUP 分组的对应关系 |
-| 国内指南 / 共识（名称与版本未核实） | 前列腺癌诊疗相关中国指南 | 未核实 | 未取得原件 | 国内实践差异；核实前**不作引用依据** |
+| NCCN | NCCN Guidelines for Patients · Prostate Cancer（Early Stage） | 版本未核实（项目 docs 未记录） | [未取得原件 · 患者版详情页](https://www.nccn.org/patientresources/patient-resources/guidelines-for-patients/guidelines-for-patients-details?patientGuidelineId=49)（PDF 可在该页下载） | 风险分组与治疗路径的框架参考；不引具体条目 |
+| NCCN | NCCN Guidelines for Patients · Prostate Cancer（Advanced Stage） | 版本未核实（项目 docs 未记录） | [未取得原件 · 患者版详情页](https://www.nccn.org/patientresources/patient-resources/guidelines-for-patients/guidelines-for-patients-details?patientGuidelineId=50)（PDF 可在该页下载） | 风险分组与治疗路径的框架参考；不引具体条目 |
+| NCCN | NCCN Guidelines · Prostate Cancer（临床版） | 版本未核实（项目 docs 未记录） | [官方入口 · 临床版全文需 NCCN 官网注册](https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1459) | 风险分组与治疗路径的框架参考；不引具体条目 |
+| AJCC | Cancer Staging Manual（前列腺章节） | 版本未核实 | [未取得原件 · 官方分期体系入口](https://www.facs.org/quality-programs/cancer-programs/american-joint-committee-on-cancer/cancer-staging-systems/)（手册为付费书） | TNM 分期口径 |
+| ISUP | 前列腺癌 Gleason 分级分组共识 | 版本未核实 | 未取得原件（Am J Surg Pathol 订阅全文；DOI 对脚本返回 403） | Gleason 评分与 ISUP 分组的对应关系 |
+| 国内指南 / 共识（名称与版本未核实） | 前列腺癌诊疗相关中国指南 | 未核实 | 未取得原件（本仓 docs 未记录名称与版本） | 国内实践差异；核实前**不作引用依据** |
 
 未取得原件的文件，本台只记「存在」与「大致讲什么」，不引用条文、推荐等级或剂量。指南给的是「通常怎么做」，不是「你该怎么做」。
 

@@ -1,6 +1,6 @@
 {
   "name": "@xyb-community/prostate-workbench",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "面向前列腺癌患者与照护者的本机优先工作台：病理与 PSA 读懂、ADT 身体与生活、排尿与性功能康复、主动监测、复诊准备与临床试验档案",
   "private": true,
   "type": "module",
@@ -20,7 +20,8 @@
     "NOTICE.md"
   ],
   "scripts": {
-    "check": "node --check dsh/index.js && node --check lib/client.js && node scripts/check-workbench-package.mjs .",
+    "check": "node --check dsh/index.js && node --check lib/client.js && node scripts/check-workbench-package.mjs . && node scripts/check-primer-links.mjs && node scripts/check-client-primer.mjs",
+    "probe:primer": "node scripts/probe-disease-primer.mjs",
     "pack:check": "npm pack --dry-run"
   },
   "dsh": {

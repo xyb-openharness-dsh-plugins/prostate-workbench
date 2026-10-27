@@ -5,15 +5,15 @@
 
 - 项目 / 品牌：小前宝 ProstaPal · 前列腺癌工作台
 - 病种：前列腺癌（Prostate Cancer）
-- 最后更新：2026-10-25
-- 数据文件：`prototypes/<vX>/primer-data.js`（`window.DISEASE_PRIMER`）——**待原型期**，本项目当前无 `prototypes/` 目录
+- 最后更新：2026-10-27
+- 数据文件：`examples/disease-primer/primer-data.js`（`window.DISEASE_PRIMER`，可探针预览）；装机客户端 `lib/client.js` 内联同一份数据
 - README 对应段：`## 疾病概要`
 
 ## 0 原件状态（本项目的前提）
 
 项目 `docs/` 是接入骨架的标准文档集，**没有任何一行记录 NCCN / AJCC / ISUP / 国内指南的版本号或更新日期**。因此：
 
-- 四份文件全部写「版本未核实」，来源栏统一「未取得原件，据二次来源」；
+- 四份文件全部写「版本未核实」；来源栏按实际状态写：能取得可验证官方入口的标 `entry` / 二次来源，拿不到可验证链接的（ISUP、国内指南）标 `nolink` 并写原因；
 - 页码全部「页码待核」；
 - 趋势段写「本台尚未整理」，**不为了排满去编年份**。
 
@@ -26,7 +26,7 @@
 - **风险分组**：把 PSA、Gleason / ISUP、分期放在一起得出的分档（低危 / 中危 / 高危这类说法），属医生结论；本台只抄原文，不自己算。
 - **本台只记原文**：病理报告的分级、分期、风险分组都照抄并标注「未核对 / 已核对」，PSA 只记数值、日期、单位与报告里写的检测方法。
 
-**来源**：ISUP · 前列腺癌 Gleason 分级分组共识 · 版本未核实 · 未取得原件，据二次来源 · 页码待核 ｜ AJCC · Cancer Staging Manual（前列腺章节）· 版本未核实 · 未取得原件，据二次来源 · 页码待核 ｜ 本项目 `docs/BRIEF.md` · 一手项目文件
+**来源**：ISUP · 前列腺癌 Gleason 分级分组共识 · 版本未核实 · 未取得原件（Am J Surg Pathol 订阅全文；DOI 对脚本返回 403）· 页码待核 ｜ AJCC · Cancer Staging Manual（前列腺章节）· 版本未核实 · 未取得原件，据二次来源 · 页码待核 ｜ 本项目 `docs/BRIEF.md` · 一手项目文件
 
 ## 2 医学资料规范和指南情况（`evidence`）
 
@@ -89,28 +89,32 @@
 
 ## 5 落地清单
 
-- [ ] `prototypes/<vX>/primer.css`（从 `assets/patterns/disease-primer.css` 复制，按项目令牌微调颜色变量，**不改结构**）——待原型期
-- [ ] `prototypes/<vX>/primer.js`（从 `assets/patterns/disease-primer.js` 复制，不改逻辑）——待原型期
-- [ ] `prototypes/<vX>/primer-data.js`（本文件四段转成 `window.DISEASE_PRIMER`）——待原型期
-- [ ] `index.html` 三处引用：`<link rel="stylesheet" href="primer.css">` / `<script src="primer-data.js">` / `<script src="primer.js">`——待原型期
-- [ ] 顶栏出现「?」（不写按钮也行，模块会自动插进 `.top-actions`；自定义位置就放 `<button data-primer-open>`）——待原型期
-- [x] README 的 `## 疾病概要` 四段正文写好，小标题与数据文件一致
-- [ ] `node scripts/probe-disease-primer.mjs --url <原型地址>` 全绿，`--self-test` 至少 3 条 FAIL——待原型期
+- [x] `examples/disease-primer/primer.css`（从 starter `assets/patterns/disease-primer.css` 复制，不改结构）
+- [x] `examples/disease-primer/primer.js`（从 starter `assets/patterns/disease-primer.js` 复制，不改逻辑）
+- [x] `examples/disease-primer/primer-data.js`（本文件四段转成 `window.DISEASE_PRIMER`）
+- [x] `examples/disease-primer/index.html` 三处引用：`<link rel="stylesheet" href="primer.css">` / `<script src="primer-data.js">` / `<script src="primer.js">`
+- [x] 顶栏出现「?」（预览页）；装机客户端顶栏为「疾病概要」按钮（`lib/client.js`，四段浮窗 + 状态卡）
+- [x] README 的 `## 疾病概要` 四段正文写好，小标题与数据文件一致；指南表补可点链接
+- [x] `node scripts/probe-disease-primer.mjs --port 8202 --url http://127.0.0.1:8202/examples/disease-primer/index.html` 10/10 通过
+- [x] `node scripts/check-primer-links.mjs --data examples/disease-primer/primer-data.js` 0 失败
+- [x] `node scripts/check-client-primer.mjs` 19/19 通过（装机层结构断言）
 
-## 6 验收（P1–P8）
-
-本项目尚无 `prototypes/` 目录与 `primer-data.js`，**P1–P8 全部记「待原型期」，不打勾**。
+## 6 验收（P1–P9 + E0）
 
 | 编号 | 判据 | 结果 |
 |---|---|---|
-| P1 | 顶栏有可点「?」，aria-label 说明四段 | 待原型期 |
-| P2 | 整页面板，四段齐全且顺序为 定义 → 指南 → 治疗全景 → 趋势 | 待原型期 |
-| P3 | 面板宽高 ≥ 视口 90% | 待原型期 |
-| P4 | 打开压一条 history，`history.back()` 收起 | 待原型期 |
-| P5 | 「返回」「关闭」两个独立入口 | 待原型期 |
-| P6 | 关闭后焦点回触发按钮、滚动位置不变 | 待原型期 |
-| P7 | Esc 只退一层 | 待原型期 |
-| P8 | 四段齐全、每段有来源、趋势段无禁止词 | 待原型期 |
+| P1 | 顶栏有可点「?」，aria-label 说明四段 | PASS |
+| P2 | 整页面板，四段齐全且顺序为 定义 → 指南 → 治疗全景 → 趋势 | PASS |
+| P3 | 面板宽高 ≥ 视口 90% | PASS（1249×829 / 1280×860） |
+| P4 | 打开压一条 history，`history.back()` 收起 | PASS |
+| P5 | 「返回」「关闭」两个独立入口 | PASS |
+| P6 | 关闭后焦点回触发按钮、滚动位置不变 | PASS |
+| P7 | Esc 只退一层 | PASS |
+| P8 | 四段齐全、每段有来源、趋势段无禁止词 | PASS |
+| P9 | 排版对齐：正文/列表/来源行同左基线、右边界极差 ≤2px，三档 | PASS |
+| E0 | 页面无 JS 报错、无 console error | PASS |
+
+装机层（`lib/client.js`）另用真实 React 渲染 + 交互验证：按钮、四段顺序、返回/关闭/Esc、焦点回收、https 链接与红色缺链接标记均正常，无 console error。
 
 ## 7 本项目教训
 
