@@ -330,7 +330,7 @@
     renderNav(id);
     document.getElementById('breadcrumb').textContent = view.title;
     main.innerHTML = view.render();
-    document.title = view.title + ' · 小前宝 ProstaPal v0.1.1';
+    document.title = view.title + ' · 小前宝 ProstaPal v0.1.2';
     main.focus({ preventScroll: true });
     window.scrollTo(0, 0);
   }
