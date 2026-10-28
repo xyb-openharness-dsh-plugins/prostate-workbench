@@ -1,3 +1,16 @@
+## 0.1.3 — 2026-10-28（装机白屏修复：prefix 路由带尾斜杠）
+
+- **根因**：`dsh/index.js` 用带尾斜杠的 `UI_PREFIX`（`/api/prostate/ui/`）注册宿主 prefix 路由。
+  宿主 `dsh-host-webserver` 的命中判据是 `pathname === prefix || pathname.startsWith(prefix + '/')`，
+  所以只有页面本身命中：`/api/prostate/ui/app.js`、`style.css`、`demo-data.js` 全部落到宿主兜底（回 index.html），
+  浏览器把 HTML 当 JS/CSS 解析 → **装机后业务区整片空白**（本地 file:// / dev 挂根看不见）。
+- **修法**：新增 `UI_ROUTE = UI_PREFIX.replace(/\/+$/, '')` 供注册；`createStaticHandler` 改用 `stripMountPrefix()`，
+  带/不带尾斜杠都认（宿主不重写 `req.url`）。iframe 入口仍用 `UI_PREFIX`，对外 URL 不变。
+- **回归**：新增 `test/ui-route.test.mjs`（4 条）并补 `npm test` / `release:check` 脚本（此前本仓没有 test）；
+  `npm run check`（同时加了 `node --check dsh/server.js`）与 `npm test` 均退出 0。
+- 实测（宿主同源桩件）：修前 `/api/prostate/ui/` 200、`app.js` / `style.css` / `demo-data.js` 全 404；
+  修后全部 200，真 Chrome 渲染出完整业务页（正文 1633 字）。
+
 # 变更记录
 
 只增不删；每条写清"改了什么 + 为什么 + 用户可见结果"。版本号与 VERSION、package.json 三处必须一致。
