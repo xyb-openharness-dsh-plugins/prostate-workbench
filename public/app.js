@@ -368,8 +368,8 @@
     }
     var prompt = promptFor(currentView());
     try {
-      window.parent.postMessage({ type: 'prostate:agent-draft', prompt: prompt, send: true }, location.origin);
-      toast('已把本页内容交给 AI 会话');
+      window.parent.postMessage({ type: 'prostate:agent-draft', prompt: prompt, send: false }, location.origin);
+      toast('已把本页内容填入 AI 会话草稿；核对后由你自己发送');
     } catch (_) {
       toast('没能请出会话面板');
     }

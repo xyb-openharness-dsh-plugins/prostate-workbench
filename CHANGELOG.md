@@ -1,3 +1,15 @@
+## 0.1.6（2026-11-11，AI 对话面板契约第三轮复核）
+
+- **修掉上一轮误插入的订阅**：`subscribe` 被塞进 `PrimerPanel` 的 `useEffect` 里且在它的 `return` 之前，
+  导致该 effect 的滚动位置记录 / `pushState` / `popstate` / 焦点回收全部变成死代码，回调还引用未声明的
+  `setPaneTick`/`setNote`。现已移除，恢复原 effect，并在 `Panel` 内新增真正的 `paneTick` 订阅
+- `deliver()` 改为**只填草稿，绝不自动发送**：删掉半成品的 `if (send) { const after = ... }` 分支，
+  message 通道的 `data.send` 一律忽略；`public/app.js` 的 postMessage 由 `send: true` 改为 `send: false`，
+  toast 改为「已填入草稿；核对后由你自己发送」
+- 取消目录选择 / 输入框未就绪都给出可重试的说明；已有归属会话只切换显示，不重建
+- 面板空态按「有会话 / 可创建 / 宿主不支持」三态给不同说明
+- 版本 0.1.6
+
 ## 0.1.5（2026-11-11，AI 对话面板激活修复第二轮）
 
 - 创建走 defaultWorkspace + newSession（不再 ensureSession/pickDirectory）
